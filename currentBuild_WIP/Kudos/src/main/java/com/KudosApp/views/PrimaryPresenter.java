@@ -1,10 +1,10 @@
 package com.KudosApp.views;
 
 import com.gluonhq.charm.glisten.application.MobileApplication;
-import com.gluonhq.charm.glisten.control.AppBar;
+//import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-import com.KudosApp.Main;
+//import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
+//import com.KudosApp.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -18,7 +18,7 @@ public class PrimaryPresenter {
 
     public void initialize() {
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue) {
+            if (newValue) {/*
                 AppBar appBar = MobileApplication.getInstance().getAppBar();
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
                         MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
@@ -31,7 +31,8 @@ public class PrimaryPresenter {
     
     @FXML
     void buttonClick() {
-        label.setText("Give Thanks!!");
+       // label.setText("Give Thanks!!");
+    	MobileApplication.getInstance().switchView("Secondary View");
     }
     
 }

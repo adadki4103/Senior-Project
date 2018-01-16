@@ -12,7 +12,7 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="label" text="Kudos!" />
+            <Label fx:id="label" text="Gratitude is Good" />
             <Button mnemonicParsing="false" onAction="#buttonClick" text="Login">
                <graphic>
                   <Icon content="LANGUAGE" />

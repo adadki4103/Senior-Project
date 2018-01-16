@@ -20,15 +20,12 @@ public class Main extends MobileApplication {
     public void init() {
         addViewFactory(PRIMARY_VIEW, () -> (View) new PrimaryView().getView());
         addViewFactory(SECONDARY_VIEW, () -> (View) new SecondaryView().getView());
-        
         addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
     }
 
     @Override
     public void postInit(Scene scene) {
         Swatch.YELLOW.assignTo(scene);
-
-        
         ((Stage) scene.getWindow()).getIcons().add(new Image(Main.class.getResourceAsStream("/icon.png")));
     }
 }

@@ -3,13 +3,12 @@ package com.KudosApp.views;
 import com.gluonhq.charm.glisten.animation.BounceInRightTransition;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.control.AppBar;
-import com.gluonhq.charm.glisten.layout.layer.FloatingActionButton;
+//import com.gluonhq.charm.glisten.layout.layer.FloatingActionButton;
 import com.gluonhq.charm.glisten.mvc.View;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.KudosApp.Main;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
-import javafx.stage.Popup;
+
 
 public class SecondaryPresenter {
 
@@ -28,7 +27,7 @@ public class SecondaryPresenter {
                 AppBar appBar = MobileApplication.getInstance().getAppBar();
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
                         MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Secondary");
+                appBar.setTitleText("Welcome");
                /* appBar.getActionItems().add(MaterialDesignIcon.FAVORITE.button(e -> 
                         System.out.println("Favorite"))); */
             }
