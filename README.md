@@ -5,4 +5,4 @@ Senior Project
 Dr. Wei
 
 
-• Gluon Mobile MultiView Desktop & Android Application. (JavaFXPorts, Glisten, CloudLinks)
+• Gluon Based MultiView Desktop & Android Application. (JavaFXPorts, Glisten, CloudLinks, Afterburner)
