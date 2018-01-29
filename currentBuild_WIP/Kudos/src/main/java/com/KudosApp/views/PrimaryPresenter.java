@@ -1,47 +1,31 @@
 package com.KudosApp.views;
 
 import com.gluonhq.charm.glisten.application.MobileApplication;
-//import com.gluonhq.charm.glisten.control.AppBar;
 import com.gluonhq.charm.glisten.mvc.View;
-
-
-//import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
-//import com.KudosApp.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+// Initial Landing Page. ( Login Page )
 public class PrimaryPresenter {
-
-    @FXML
-    private View primary;
-
+	@FXML
+	private View primary;
     @FXML
     private Label label;
     
-
-
     
     public void initialize() {
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
-            if (newValue) {/*
-                AppBar appBar = MobileApplication.getInstance().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Primary");
-               /* appBar.getActionItems().add(MaterialDesignIcon.SEARCH.button(e -> 
-                        System.out.println("Search"))); */
-            }
-        });
-    }
-    
+            if (newValue) {}});}
+  
+    // Go to Login
     @FXML
     void buttonClick() {
-       // label.setText("Give Thanks!!");
     	MobileApplication.getInstance().switchView("Secondary View");
     }
+    
+    // Go to Registration
     @FXML
     void buttonClickTwo() {
-        label.setText("Isn't it?");
         MobileApplication.getInstance().switchView("Third View");
     }
     

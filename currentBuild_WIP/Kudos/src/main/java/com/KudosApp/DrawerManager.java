@@ -12,8 +12,8 @@ import com.gluonhq.charm.glisten.control.NavigationDrawer.ViewItem;
 import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import static com.KudosApp.Main.MENU_LAYER;
 import static com.KudosApp.Main.PRIMARY_VIEW;
-import static com.KudosApp.Main.SECONDARY_VIEW;
-import static com.KudosApp.Main.THIRD_VIEW;
+//import static com.KudosApp.Main.SECONDARY_VIEW;
+//import static com.KudosApp.Main.THIRD_VIEW;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 
@@ -29,9 +29,9 @@ public class DrawerManager {
                 new Avatar(21, new Image(DrawerManager.class.getResourceAsStream("/icon.png"))));
         drawer.setHeader(header);
         
-        final Item primaryItem = new ViewItem("Home", MaterialDesignIcon.HOME.graphic(), SECONDARY_VIEW, ViewStackPolicy.SKIP);
-        final Item secondaryItem = new ViewItem("Registration", MaterialDesignIcon.DASHBOARD.graphic(), THIRD_VIEW);
-        drawer.getItems().addAll(primaryItem, secondaryItem);
+        final Item primaryItem = new ViewItem("Home", MaterialDesignIcon.HOME.graphic(), PRIMARY_VIEW, ViewStackPolicy.SKIP);
+        //final Item secondaryItem = new ViewItem("Registration", MaterialDesignIcon.DASHBOARD.graphic(), THIRD_VIEW);
+        drawer.getItems().addAll(primaryItem);
         
         if (Platform.isDesktop()) {
             final Item quitItem = new Item("Quit", MaterialDesignIcon.EXIT_TO_APP.graphic());
