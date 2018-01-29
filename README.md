@@ -1,8 +1,4 @@
 # Senior-Project
-
-UNG CSCI4950 Adam Adkins 
-Senior Project
+UNG CSCI4950 Adam Adkins <BR>
+Senior Project<BR>
 Dr. Wei
-
-
-• Gluon Based MultiView Desktop & Android Application. (JavaFXPorts, Glisten, CloudLinks, Afterburner)
