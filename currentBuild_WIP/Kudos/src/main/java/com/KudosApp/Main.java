@@ -4,6 +4,8 @@ import com.KudosApp.views.PrimaryView;
 import com.KudosApp.views.SecondaryView;
 import com.KudosApp.views.ThirdView;
 import com.KudosApp.views.FourthView;
+import com.KudosApp.views.FifthView;
+import com.KudosApp.views.SixthView;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -17,7 +19,9 @@ public class Main extends MobileApplication {
     public static final String PRIMARY_VIEW = HOME_VIEW;   // Landing Page
     public static final String SECONDARY_VIEW = "Secondary View"; // Log in
     public static final String THIRD_VIEW = "Third View";  // Registration
-    public static final String FOURTH_VIEW = "Fourth View"; // Mock Landing 
+    public static final String FOURTH_VIEW = "Fourth View"; // Mock Landing (Not used)
+    public static final String FIFTH_VIEW = "Fifth View"; // Mock Landing 
+    public static final String SIXTH_VIEW = "Sixth View"; // Send a Gift Page
     public static final String MENU_LAYER = "Side Menu";
     
     @Override
@@ -26,6 +30,8 @@ public class Main extends MobileApplication {
         addViewFactory(SECONDARY_VIEW, () -> (View) new SecondaryView().getView());
         addViewFactory(THIRD_VIEW, () -> (View) new ThirdView().getView());
         addViewFactory(FOURTH_VIEW, () -> (View) new FourthView().getView());
+        addViewFactory(FIFTH_VIEW, () -> (View) new FifthView().getView());
+        addViewFactory(SIXTH_VIEW, () -> (View) new SixthView().getView());
         addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
     }
 

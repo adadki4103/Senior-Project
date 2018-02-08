@@ -38,7 +38,9 @@ public class SecondaryPresenter {
 	private TextField userNameField;
 	@FXML
 	private PasswordField passWordField;
-    
+	String r2;
+	public String user_name;
+	public String passwordEntered;
 
     public void initialize() {
         secondary.setShowTransitionFactory(BounceInRightTransition::new);
@@ -56,15 +58,15 @@ public class SecondaryPresenter {
                         System.out.println("Favorite"))); */
             }});}
    
-    String r2;
+  
     // Log in Check 
 	@FXML
 	String buttonClick() throws SQLException, NoSuchAlgorithmException {
 		String login_url = "http://kudosapp.org/kudosLibb/checkUser.php";
 		try {
 			//MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-			String user_name = userNameField.getText();
-			String passwordEntered = passWordField.getText();
+			user_name = userNameField.getText();
+			passwordEntered = passWordField.getText();
 			//messageDigest.update(passwordEntered.getBytes());
 			//String encryptedPass = new String(messageDigest.digest());
 			URL url = new URL(login_url);
@@ -94,10 +96,10 @@ public class SecondaryPresenter {
 			httpURLConnection.disconnect();
 			
 			if(r2.equals("Pass")){
+				MobileApplication.getInstance().switchView("Fifth View");
 			}
 			else if(r2.equals("Fail")){}
-			
-			
+
 			return result;
 			
 			} catch (MalformedURLException e) {
@@ -106,7 +108,6 @@ public class SecondaryPresenter {
 					e.printStackTrace();
 					}
 		return null;
-
 		}
 	// Go Back
 	@FXML
