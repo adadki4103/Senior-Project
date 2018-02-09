@@ -6,6 +6,7 @@ import com.KudosApp.views.ThirdView;
 import com.KudosApp.views.FourthView;
 import com.KudosApp.views.FifthView;
 import com.KudosApp.views.SixthView;
+import com.KudosApp.views.SeventhView;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -22,6 +23,7 @@ public class Main extends MobileApplication {
     public static final String FOURTH_VIEW = "Fourth View"; // Mock Landing (Not used)
     public static final String FIFTH_VIEW = "Fifth View"; // Mock Landing 
     public static final String SIXTH_VIEW = "Sixth View"; // Send a Gift Page
+    public static final String SEVENTH_VIEW = "Seventh View"; // Payment Page
     public static final String MENU_LAYER = "Side Menu";
     
     @Override
@@ -32,12 +34,13 @@ public class Main extends MobileApplication {
         addViewFactory(FOURTH_VIEW, () -> (View) new FourthView().getView());
         addViewFactory(FIFTH_VIEW, () -> (View) new FifthView().getView());
         addViewFactory(SIXTH_VIEW, () -> (View) new SixthView().getView());
+        addViewFactory(SEVENTH_VIEW, () -> (View) new SeventhView().getView());
         addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
     }
 
     @Override
     public void postInit(Scene scene) {
-        Swatch.YELLOW.assignTo(scene);
+        Swatch.BLUE.assignTo(scene);
         ((Stage) scene.getWindow()).getIcons().add(new Image(Main.class.getResourceAsStream("/icon.png")));
     }
 }

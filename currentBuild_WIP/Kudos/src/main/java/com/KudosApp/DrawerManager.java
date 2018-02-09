@@ -1,5 +1,7 @@
 package com.KudosApp;
 
+// Menu Bar
+
 import com.gluonhq.charm.down.Platform;
 import com.gluonhq.charm.down.Services;
 import com.gluonhq.charm.down.plugins.LifecycleService;
