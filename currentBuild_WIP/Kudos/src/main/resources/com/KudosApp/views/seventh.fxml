@@ -14,13 +14,14 @@
       <VBox fx:id="buttonHolder" alignment="TOP_CENTER" prefHeight="230.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
             <Label fx:id="label" text="Make Payment" />
-            <TextField fx:id="toSendName" maxWidth="250.00" promptText="Name On Card" />
-            <TextField fx:id="toSendName1" maxWidth="250.00" promptText="Credit Card Number" />
-            <DatePicker promptText="Expiration Date" />
-            <TextField fx:id="toSendName11" maxWidth="250.00" promptText="CVV Number" />
+            <TextField fx:id="credName" maxWidth="250.00" promptText="Name On Card" />
+            <TextField fx:id="credNum" maxWidth="250.00" promptText="Credit Card Number" />
+            <DatePicker fx:id="credDate" promptText="Expiration Date" />
+            <TextField fx:id="credCCVNum" maxWidth="250.00" promptText="CVV Number" />
             <Label fx:id="errorLabel" text="Item Name" />
+            <Label fx:id="errorLabel2" text="Item Price" />
             <Label fx:id="errorLabel1" text="Receiver Name" />
-            <Button fx:id="sendItemButton" mnemonicParsing="false" text="Send Payment">
+            <Button fx:id="sendCredButton" mnemonicParsing="false" onAction="#sendEmail" text="Send Payment">
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>

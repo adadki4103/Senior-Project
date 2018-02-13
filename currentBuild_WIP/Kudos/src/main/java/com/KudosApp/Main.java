@@ -20,7 +20,7 @@ public class Main extends MobileApplication {
     public static final String PRIMARY_VIEW = HOME_VIEW;   // Landing Page
     public static final String SECONDARY_VIEW = "Secondary View"; // Log in
     public static final String THIRD_VIEW = "Third View";  // Registration
-    public static final String FOURTH_VIEW = "Fourth View"; // Mock Landing (Not used)
+    public static final String FOURTH_VIEW = "Fourth View"; // Mock Landing 
     public static final String FIFTH_VIEW = "Fifth View"; // Mock Landing 
     public static final String SIXTH_VIEW = "Sixth View"; // Send a Gift Page
     public static final String SEVENTH_VIEW = "Seventh View"; // Payment Page

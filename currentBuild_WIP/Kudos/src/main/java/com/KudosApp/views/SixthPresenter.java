@@ -12,7 +12,6 @@ package com.KudosApp.views;
 
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.animation.BounceInRightTransition;
-import com.gluonhq.charm.glisten.visual.MaterialDesignIcon;
 import com.mysql.jdbc.StringUtils;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,7 +26,6 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import com.KudosApp.Main;
 import com.gluonhq.charm.glisten.mvc.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -36,8 +34,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-
-import com.gluonhq.charm.glisten.control.AppBar;
 
 // Send a Gift Page
 public class SixthPresenter {
@@ -58,21 +54,25 @@ public class SixthPresenter {
 	private Button sendItemButton;
     ObservableList<String> brandList = FXCollections.observableArrayList();
     ObservableList<String> itemList = FXCollections.observableArrayList();
-    public String itemChosen = "nullItem";
-    public String nameGiven = "nullName";
+    public static String itemChosen = "nullItem";
+    public static String nameGiven = "nullName";
     public void initialize() {
     	primary.setShowTransitionFactory(BounceInRightTransition::new);
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
             	try {
+            		brandCombo.getSelectionModel().clearSelection();
+            		brandCombo.getItems().clear();
+            		itemCombo.getSelectionModel().clearSelection();
+            		itemCombo.getItems().clear();
 					brandToCombo();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-                AppBar appBar = MobileApplication.getInstance().getAppBar();
+               /* AppBar appBar = MobileApplication.getInstance().getAppBar();
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
                         MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Welcome");
+                appBar.setTitleText("Welcome"); */
                /* appBar.getActionItems().add(MaterialDesignIcon.FAVORITE.button(e -> 
                         System.out.println("Favorite"))); */
             }});}
@@ -201,7 +201,6 @@ public class SixthPresenter {
 			if(isMyComboBoxEmpty == false && nameExist == true && r3.equals(yesName) && StringUtils.isEmptyOrWhitespaceOnly(str) == false){
 				itemChosen = itemCombo.getValue(); 
 				nameGiven = toSendName.getText();
-				//System.out.println("Hitting");
 				MobileApplication.getInstance().switchView("Seventh View");
 			}
 			else if(isMyComboBoxEmpty == true || nameExist == false){
@@ -214,12 +213,17 @@ public class SixthPresenter {
 			inputStream.close();
 			httpURLConnection.disconnect();
 			return result;
-			
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 				} catch (IOException e) {
 					e.printStackTrace();
 					}
 		return null;
+    }
+    public static String giveItemName(){
+    	return itemChosen;
+    }
+    public static String giveRecName(){
+    	return nameGiven;
     }
 }
