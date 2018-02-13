@@ -39,16 +39,6 @@ $msg = wordwrap($msg,70);
 // send email
 mail("{$brandEmail}","My subject",$msg);
 
-echo "works";
-echo "Receivers Name: {$recName}.";
-echo "Item Brand: {$itBrand}.";
-echo "Item Name: {$itName}.";
-echo "Item Price: {$itPrice}.";
-echo "Cred Name: {$credName}.";
-echo "Cred Num: {$credNum}.";
-echo "Cred Date: {$credDate}.";
-echo "Cred CCV: {$credCCV}.";
-echo "Code: {$genCode}.";
-echo "Email: {$brandEmail}.";
+echo "Success";
 
 ?> 
