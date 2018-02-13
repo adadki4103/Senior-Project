@@ -1,5 +1,5 @@
 <?php
-
+//db_name, username, & password,SELECT Details, & POST Details removed for Security Purposes. 
 $db_name = "";
 $mysql_username = "";
 $mysql_password = "";
