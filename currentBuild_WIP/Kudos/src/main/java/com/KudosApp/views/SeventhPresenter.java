@@ -1,9 +1,9 @@
 package com.KudosApp.views;
 
+// Payment Page
+
 import com.gluonhq.charm.glisten.animation.BounceInUpTransition;
-
-// Payment Page 
-
+import com.gluonhq.charm.glisten.application.MobileApplication;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -40,40 +41,40 @@ public class SeventhPresenter {
 	private TextField credCCVNum;
 	@FXML
 	private DatePicker credDate;
+	@FXML
+	private Label payLabel;
+	@FXML
+	private Label drpLabel;
 	
-	String itemName = "blankItem";
-	String nameName = "blankName";
+	String genCode ="b";
+	String mailSent ="nopeFail";
 	String brandName = "blankBrand";
 	String itemPrice = "blankPrice";
 	String r2,r3,r4;
-	String genCode ="b";
-	String mailSent ="nopeFail";
 	//brandName, brandEmail, itemPrice
-  
-    public void initialize() {
-    	
+	String itemName = "blankItem";
+	String nameName = "blankName";
+	String itemStr,nameStr;
+
+    public void initialize() throws IOException {
         itemName = SixthPresenter.giveItemName();
         nameName = SixthPresenter.giveRecName();
         getSelectedBrandName();
         getSelectedBrandEmail();
         getSelectedItemPrice();
         generateCode();
-        String itemStr = "Item: "+(String.valueOf(itemName));
-        String nameStr = "Receiver: "+(String.valueOf(nameName));
+        itemStr = "Item: "+(String.valueOf(itemName));
+        nameStr = "Receiver: "+(String.valueOf(nameName));
     	errorLabel.setText(String.valueOf(itemStr));
     	errorLabel1.setText(String.valueOf(nameStr));
     	
+    	credDate.setShowWeekNumbers(false);
+    	credDate.setEditable(false);
+    	credDate.setValue(LocalDate.now());
     	primary.setShowTransitionFactory(BounceInUpTransition::new);
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
-               /* AppBar appBar = MobileApplication.getInstance().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Welcome");*/
-               /* appBar.getActionItems().add(MaterialDesignIcon.FAVORITE.button(e -> 
-                        System.out.println("Favorite"))); */
             }});}
-    
 private String getSelectedBrandName(){
     	// Use item name to get brand name.
     	// r2 becomes brandName
@@ -109,8 +110,7 @@ private String getSelectedBrandName(){
 				e.printStackTrace();
 				}
 	return null;
-	}
-    
+	}  
 private String getSelectedBrandEmail(){
 	// Use get brand name to get brandEmail
 	// r3 becomes brand email
@@ -147,7 +147,6 @@ private String getSelectedBrandEmail(){
 				}
 	return null;
 	}
-
 private String getSelectedItemPrice(){
 	// r4 becomes item price
 	String login_url = "http://kudosapp.org/kudosLibb/getThatPrice.php";
@@ -184,21 +183,19 @@ private String getSelectedItemPrice(){
 				}
 	return null;
 	}
-
 private String generateCode(){
     String uuid = UUID.randomUUID().toString();
     uuid.replace("-", "");
     return uuid;
-
 }
 @FXML
-private void sendEmail(){
+private String sendEmail(){
 	// Send Item Brand. Item Name. Item Price. CredCard Information.(name, number, date, ccv number)  Gened Code. to Brand Email of Selected Item.
 	// Send receiver Name. Item Name. Gen Code to Temp Table ( For redeeming later )
 	// Brand name = r2.  
 	//  Name = itemName.
 	// Item Price = r4. 
-	// Reciever Name = nameName
+	// Receiver Name = nameName
 	String sendCredName = credName.getText();
 	String sendCredNum = credNum.getText();
 	String sendCredDate = credDate.getValue().format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
@@ -235,16 +232,27 @@ private void sendEmail(){
 		while((line = bufferedReader.readLine())!= null) {
 			result += line;
 			}
-		mailSent = result;
-		//System.out.println(String.valueOf(mailSent));
+		mailSent = result;;
+		if(credNum.getLength() > 19 || credNum.getLength() < 13 || !credNum.getText().matches("[0-9]+") 
+				|| !credCCVNum.getText().matches("[0-9]+") || credCCVNum.getLength() > 4 || credNum.getLength() <= 2){
+			drpLabel.setText("Incorrect Input");
+			}
+		else if(credNum.getLength() < 19 && credNum.getLength() > 13 && credNum.getText().matches("[0-9]+") 
+				&& credCCVNum.getText().matches("[0-9]+") && credCCVNum.getLength() < 4 && credNum.getLength() >= 3){
+			drpLabel.setText("Correct Input");
+			payLabel.setText("Payment Status: "+String.valueOf(mailSent));
+			MobileApplication.getInstance().switchView("Eighth View");
+		}
 		bufferedReader.close();
 		inputStream.close();
 		httpURLConnection.disconnect();
+		return result;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 			} catch (IOException e) {
 				e.printStackTrace();
 				}
+	return null;
 }
 }
 

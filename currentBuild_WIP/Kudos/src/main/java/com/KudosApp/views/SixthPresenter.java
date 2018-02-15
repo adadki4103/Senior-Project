@@ -61,6 +61,7 @@ public class SixthPresenter {
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
             	try {
+            		//resetVars();
             		brandCombo.getSelectionModel().clearSelection();
             		brandCombo.getItems().clear();
             		itemCombo.getSelectionModel().clearSelection();
@@ -69,16 +70,9 @@ public class SixthPresenter {
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}
-               /* AppBar appBar = MobileApplication.getInstance().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Welcome"); */
-               /* appBar.getActionItems().add(MaterialDesignIcon.FAVORITE.button(e -> 
-                        System.out.println("Favorite"))); */
             }});}
     // Populate Brand Combo Box from DB
-    private String brandToCombo() throws SQLException{
-    	
+    private String brandToCombo() throws SQLException{    	
     	String login_url = "http://kudosapp.org/kudosLibb/populateBrand.php";
 		try {
 			URL url = new URL(login_url);
@@ -93,7 +87,6 @@ public class SixthPresenter {
 			while((line = bufferedReader.readLine())!= null) {
 				result += line;
 				}
-			    
 			bufferedReader.close();
 			inputStream.close();
 			httpURLConnection.disconnect();
@@ -113,7 +106,8 @@ public class SixthPresenter {
     // Get brandCombo Selection. Use it to populate itemCombo
     @FXML
     private String getBrandBox() throws SQLException, NoSuchAlgorithmException{
-    	itemCombo.getItems().clear();
+    	//itemCombo.getItems().clear();
+    	
 		String value = brandCombo.getValue();
 		String login_url = "http://kudosapp.org/kudosLibb/whatItem.php";
 		try {
@@ -136,7 +130,6 @@ public class SixthPresenter {
 			while((line = bufferedReader.readLine())!= null) {
 				result += line;
 				}
-
 			bufferedReader.close();
 			inputStream.close();
 			httpURLConnection.disconnect();
@@ -146,7 +139,6 @@ public class SixthPresenter {
 			}
 			itemCombo.setItems(itemList);
 			return result;
-			
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 				} catch (IOException e) {
@@ -154,7 +146,6 @@ public class SixthPresenter {
 					}
 		return null;
 		}
-    
     // Checks for User. Displays Error Message if they don't exist.
     @FXML
     private String checkForUser(){

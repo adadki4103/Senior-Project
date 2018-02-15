@@ -6,7 +6,6 @@ import com.gluonhq.charm.glisten.mvc.View;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-
 // Mock 'Home Page' 
 public class FourthPresenter {
 	@FXML
@@ -17,13 +16,11 @@ public class FourthPresenter {
     public void initialize() {
         primary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {}});}
-  
     // Go to Login
     @FXML
     void buttonClick() {
     	MobileApplication.getInstance().switchView("Secondary View");
     }
-    
     // Go to Registration
     @FXML
     void buttonClickTwo() {

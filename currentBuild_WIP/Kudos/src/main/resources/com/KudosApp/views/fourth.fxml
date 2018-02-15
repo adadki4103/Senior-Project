@@ -27,15 +27,21 @@
                         <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <Button layoutX="116.0" layoutY="357.0" mnemonicParsing="false" onAction="#buttonClickTwo" prefHeight="35.0" prefWidth="126.0" text="Registration">
+                  <Button layoutX="102.0" layoutY="363.0" mnemonicParsing="false" onAction="#buttonClickTwo" prefHeight="44.0" prefWidth="154.0" text="Registration">
                      <graphic>
                         <Icon content="LANGUAGE" />
                      </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Button>
-                  <Button layoutX="150.0" layoutY="290.0" mnemonicParsing="false" onAction="#buttonClick" text="Login">
+                  <Button layoutX="135.0" layoutY="290.0" mnemonicParsing="false" onAction="#buttonClick" text="Login">
                      <graphic>
                         <Icon content="LANGUAGE" />
                      </graphic>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
                   </Button>
                </children>
             </AnchorPane>

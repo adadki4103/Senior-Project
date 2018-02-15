@@ -7,6 +7,7 @@ import com.KudosApp.views.FourthView;
 import com.KudosApp.views.FifthView;
 import com.KudosApp.views.SixthView;
 import com.KudosApp.views.SeventhView;
+import com.KudosApp.views.EighthView;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -24,6 +25,7 @@ public class Main extends MobileApplication {
     public static final String FIFTH_VIEW = "Fifth View"; // Mock Landing 
     public static final String SIXTH_VIEW = "Sixth View"; // Send a Gift Page
     public static final String SEVENTH_VIEW = "Seventh View"; // Payment Page
+    public static final String EIGHTH_VIEW = "Eighth View"; // Gift Has Been Sent Page
     public static final String MENU_LAYER = "Side Menu";
     
     @Override
@@ -35,6 +37,7 @@ public class Main extends MobileApplication {
         addViewFactory(FIFTH_VIEW, () -> (View) new FifthView().getView());
         addViewFactory(SIXTH_VIEW, () -> (View) new SixthView().getView());
         addViewFactory(SEVENTH_VIEW, () -> (View) new SeventhView().getView());
+        addViewFactory(EIGHTH_VIEW, () -> (View) new EighthView().getView());
         addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
     }
 

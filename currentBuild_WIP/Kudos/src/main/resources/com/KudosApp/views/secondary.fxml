@@ -14,15 +14,27 @@
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="TOP_CENTER" text="Log In" />
-            <TextField fx:id="userNameField" alignment="TOP_CENTER" maxWidth="250.00" promptText="User Name" style="-fx-prompt-text-fill: #000000;" />
+            <Label alignment="TOP_CENTER" text="Log In">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <TextField fx:id="userNameField" alignment="TOP_CENTER" maxWidth="250.00" promptText="User Name" style="-fx-prompt-text-fill: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font></TextField>
             <Label alignment="TOP_CENTER" text=" " />
-            <PasswordField fx:id="passWordField" alignment="TOP_CENTER" maxWidth="250.00" promptText="Password" style="-fx-prompt-text-fill: #000000;" />
+            <PasswordField fx:id="passWordField" alignment="TOP_CENTER" maxWidth="250.00" promptText="Password" style="-fx-prompt-text-fill: #000000;">
+               <font>
+                  <Font size="20.0" />
+               </font></PasswordField>
             <Label alignment="TOP_CENTER" text=" " />
             <Button fx:id="regSend" mnemonicParsing="false" onAction="#buttonClick" text="Log In">
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
             <Label alignment="TOP_CENTER" text=" " />
             <Label fx:id="testLabel" text="Make Sure You're Registered">
@@ -34,6 +46,9 @@
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
       </VBox>

@@ -34,7 +34,6 @@ public class ThirdPresenter {
 	@FXML
 	private PasswordField passWordField;
 	
-	
 	// Registration Send
 	@FXML
 	String buttonClick() throws SQLException, NoSuchAlgorithmException {

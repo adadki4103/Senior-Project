@@ -44,15 +44,7 @@ public class SecondaryPresenter {
         
         secondary.showingProperty().addListener((obs, oldValue, newValue) -> {
             if (newValue) {
-                /*AppBar appBar = MobileApplication.getInstance().getAppBar();
-                appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
-                        MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Welcome");
-               /* appBar.getActionItems().add(MaterialDesignIcon.FAVORITE.button(e -> 
-                        System.out.println("Favorite"))); */
             }});}
-   
-  
     // Log in Check 
 	@FXML
 	String buttonClick() throws SQLException, NoSuchAlgorithmException {
@@ -88,14 +80,11 @@ public class SecondaryPresenter {
 			bufferedReader.close();
 			inputStream.close();
 			httpURLConnection.disconnect();
-			
 			if(r2.equals("Pass")){
 				MobileApplication.getInstance().switchView("Fifth View");
 			}
 			else if(r2.equals("Fail")){}
-
 			return result;
-			
 			} catch (MalformedURLException e) {
 				e.printStackTrace();
 				} catch (IOException e) {
@@ -107,6 +96,5 @@ public class SecondaryPresenter {
 	@FXML
 	void goBack(){
 		MobileApplication.getInstance().switchView("Fourth View");
-
     }
 }

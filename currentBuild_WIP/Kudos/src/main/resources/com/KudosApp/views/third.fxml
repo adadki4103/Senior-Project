@@ -14,13 +14,25 @@
    <center>
       <VBox alignment="TOP_CENTER" prefHeight="400.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="label" alignment="TOP_CENTER" text="Registration" />
-            <TextField fx:id="userNameField" alignment="TOP_CENTER" maxWidth="250.00" promptText="User Name" style="-fx-prompt-text-fill: #000000;" />
-            <PasswordField fx:id="passWordField" alignment="TOP_CENTER" maxWidth="250.00" promptText="Password" style="-fx-prompt-text-fill: #000000;" />
+            <Label fx:id="label" alignment="TOP_CENTER" text="Registration">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <TextField fx:id="userNameField" alignment="TOP_CENTER" maxWidth="250.00" promptText="User Name" style="-fx-prompt-text-fill: #000000;">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <PasswordField fx:id="passWordField" alignment="TOP_CENTER" maxWidth="250.00" promptText="Password" style="-fx-prompt-text-fill: #000000;">
+               <font>
+                  <Font size="16.0" />
+               </font></PasswordField>
             <Button fx:id="regSend" mnemonicParsing="false" onAction="#buttonClick" text="Register Send">
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
             <Label fx:id="testLabel" text="User Names Must Be Unique">
                <font>
@@ -31,6 +43,9 @@
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
       </VBox>

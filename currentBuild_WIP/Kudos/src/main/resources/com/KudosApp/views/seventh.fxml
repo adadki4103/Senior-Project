@@ -8,23 +8,53 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <View fx:id="primary" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="350.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.KudosApp.views.SeventhPresenter">
    <center>
       <VBox fx:id="buttonHolder" alignment="TOP_CENTER" prefHeight="230.0" prefWidth="100.0" spacing="15.0" BorderPane.alignment="CENTER">
          <children>
-            <Label fx:id="label" text="Make Payment" />
-            <TextField fx:id="credName" maxWidth="250.00" promptText="Name On Card" />
-            <TextField fx:id="credNum" maxWidth="250.00" promptText="Credit Card Number" />
-            <DatePicker fx:id="credDate" promptText="Expiration Date" />
-            <TextField fx:id="credCCVNum" maxWidth="250.00" promptText="CVV Number" />
-            <Label fx:id="errorLabel" text="Item Name" />
-            <Label fx:id="errorLabel2" text="Item Price" />
-            <Label fx:id="errorLabel1" text="Receiver Name" />
+            <Label fx:id="label" text="Make Payment">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
+            <TextField fx:id="credName" maxWidth="250.00" promptText="Name On Card">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
+            <TextField fx:id="credNum" maxWidth="250.00" promptText="Credit Card Number">
+               <font>
+                  <Font size="15.0" />
+               </font></TextField>
+            <DatePicker fx:id="credDate" editable="false" prefHeight="42.0" prefWidth="239.0" promptText="Expiration Date" />
+            <TextField fx:id="credCCVNum" maxWidth="250.00" promptText="CVV Number">
+               <font>
+                  <Font size="16.0" />
+               </font></TextField>
+            <Label fx:id="drpLabel" text=" " />
+            <Label fx:id="errorLabel" text="Item Name">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="errorLabel2" text="Item Price">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="errorLabel1" text="Receiver Name">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label fx:id="payLabel" text="Payment: Waiting">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
             <Button fx:id="sendCredButton" mnemonicParsing="false" onAction="#sendEmail" text="Send Payment">
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
             </Button>
          </children>
       </VBox>
