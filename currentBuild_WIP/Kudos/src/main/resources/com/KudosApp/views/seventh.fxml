@@ -48,7 +48,7 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Button fx:id="sendCredButton" mnemonicParsing="false" onAction="#sendEmail" text="Send Payment">
+            <Button fx:id="sendCredButton" mnemonicParsing="false" onAction="#buttonAction" text="Send Payment">
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>

@@ -17,6 +17,7 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Random;
 import java.util.UUID;
 import com.gluonhq.charm.glisten.mvc.View;
 import javafx.fxml.FXML;
@@ -51,23 +52,23 @@ public class SeventhPresenter {
 	String brandName = "blankBrand";
 	String itemPrice = "blankPrice";
 	String r2,r3,r4;
-	//brandName, brandEmail, itemPrice
-	String itemName = "blankItem";
-	String nameName = "blankName";
+	String r5 = "blankCode";
+	//brandName, brandEmail, itemPrice, pickUpID
+	String itemName = SixthPresenter.giveItemName();
+	String nameName = SixthPresenter.giveRecName();
 	String itemStr,nameStr;
+	String sharedCode = String.valueOf(generateCode());;
 
-    public void initialize() throws IOException {
-        itemName = SixthPresenter.giveItemName();
-        nameName = SixthPresenter.giveRecName();
+    public void initialize() throws IOException { 
+    	System.out.println("Shared Code @ original: "+sharedCode);
         getSelectedBrandName();
         getSelectedBrandEmail();
         getSelectedItemPrice();
-        generateCode();
+        getSelectedPickUpID();
         itemStr = "Item: "+(String.valueOf(itemName));
         nameStr = "Receiver: "+(String.valueOf(nameName));
     	errorLabel.setText(String.valueOf(itemStr));
     	errorLabel1.setText(String.valueOf(nameStr));
-    	
     	credDate.setShowWeekNumbers(false);
     	credDate.setEditable(false);
     	credDate.setValue(LocalDate.now());
@@ -111,6 +112,44 @@ private String getSelectedBrandName(){
 				}
 	return null;
 	}  
+private String getSelectedPickUpID(){
+	// r5 becomes pickUpID
+String login_url = "http://kudosapp.org/kudosLibb/getThatID.php";
+try {
+	URL url = new URL(login_url);
+	HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+	httpURLConnection.setRequestMethod("POST");
+	httpURLConnection.setDoOutput(true);
+	httpURLConnection.setDoInput(true);
+	OutputStream outputStream = httpURLConnection.getOutputStream();
+	BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+	String post_data = URLEncoder.encode("theCode","UTF-8")+"="+URLEncoder.encode(sharedCode,"UTF-8");
+	System.out.println("Shared Code @ getSelectedPickUpID: "+sharedCode);
+	
+	bufferedWriter.write(post_data);
+	bufferedWriter.flush();
+	bufferedWriter.close();
+	outputStream.close();
+	InputStream inputStream = httpURLConnection.getInputStream();
+	BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+	String result="";
+	String line="";
+	while((line = bufferedReader.readLine())!= null) {
+		result += line;
+		}
+	r5 = result;
+	System.out.println("r5: "+ String.valueOf(r5));
+	bufferedReader.close();
+	inputStream.close();
+	httpURLConnection.disconnect();
+	return result;
+	} catch (MalformedURLException e) {
+		e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+			}
+return null;
+}  
 private String getSelectedBrandEmail(){
 	// Use get brand name to get brandEmail
 	// r3 becomes brand email
@@ -158,6 +197,7 @@ private String getSelectedItemPrice(){
 		httpURLConnection.setDoInput(true);
 		OutputStream outputStream = httpURLConnection.getOutputStream();
 		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+		System.out.println("Item Price Get Sees: "+itemName);
 		String post_data = URLEncoder.encode("item_price","UTF-8")+"="+URLEncoder.encode(itemName,"UTF-8");
 		bufferedWriter.write(post_data);
 		bufferedWriter.flush();
@@ -184,23 +224,31 @@ private String getSelectedItemPrice(){
 	return null;
 	}
 private String generateCode(){
-    String uuid = UUID.randomUUID().toString();
-    uuid.replace("-", "");
-    return uuid;
+	Random generator = new Random();
+    StringBuilder randomStringBuilder = new StringBuilder();
+    //int randomLength = generator.nextInt(6);
+    char tempChar;
+    for (int i = 0; i < 6; i++){
+        tempChar = (char) (generator.nextInt(96) + 32);
+        randomStringBuilder.append(tempChar);
+    }
+    
+    return randomStringBuilder.toString();
 }
-@FXML
 private String sendEmail(){
+	
 	// Send Item Brand. Item Name. Item Price. CredCard Information.(name, number, date, ccv number)  Gened Code. to Brand Email of Selected Item.
 	// Send receiver Name. Item Name. Gen Code to Temp Table ( For redeeming later )
 	// Brand name = r2.  
 	//  Name = itemName.
 	// Item Price = r4. 
 	// Receiver Name = nameName
+	// pickUpID = r5
 	String sendCredName = credName.getText();
 	String sendCredNum = credNum.getText();
 	String sendCredDate = credDate.getValue().format(DateTimeFormatter.ofPattern("MM-dd-yyyy"));
 	String sendCredCCVNum = credCCVNum.getText();
-	String sharedCode = String.valueOf(generateCode());
+	
 	// Brand email = r3.
 	String login_url = "http://kudosapp.org/kudosLibb/sendMail.php";
 	try {
@@ -220,7 +268,11 @@ private String sendEmail(){
 		+"&" +URLEncoder.encode("credCCV","UTF-8")+"="+URLEncoder.encode(sendCredCCVNum,"UTF-8")
 		+"&" +URLEncoder.encode("genCode","UTF-8")+"="+URLEncoder.encode(sharedCode,"UTF-8")
 		+"&" +URLEncoder.encode("brandEmail","UTF-8")+"="+URLEncoder.encode(r3,"UTF-8")
-		+"&" +URLEncoder.encode("recName","UTF-8")+"="+URLEncoder.encode(nameName,"UTF-8");
+		+"&" +URLEncoder.encode("recName","UTF-8")+"="+URLEncoder.encode(nameName,"UTF-8")
+		+"&" +URLEncoder.encode("pickId","UTF-8")+"="+URLEncoder.encode(r5,"UTF-8");
+		
+		System.out.println("Shared Code @ sendMail: "+sharedCode);
+		
 		bufferedWriter.write(post_data);
 		bufferedWriter.flush();
 		bufferedWriter.close();
@@ -253,6 +305,52 @@ private String sendEmail(){
 				e.printStackTrace();
 				}
 	return null;
+}
+
+private String insertDets(){
+	// Send Item Brand. Item Name. Item Price. CredCard Information.(name, number, date, ccv number)  Gened Code. to db
+	String login_url = "http://kudosapp.org/kudosLibb/insertDets.php";
+	try {
+		URL url = new URL(login_url);
+		HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+		httpURLConnection.setRequestMethod("POST");
+		httpURLConnection.setDoOutput(true);
+		httpURLConnection.setDoInput(true);
+		OutputStream outputStream = httpURLConnection.getOutputStream();
+		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
+		String post_data = URLEncoder.encode("itemBrand","UTF-8")+"="+URLEncoder.encode(r2,"UTF-8")
+		+"&" +URLEncoder.encode("itemName","UTF-8")+"="+URLEncoder.encode(itemName,"UTF-8")
+		+"&" +URLEncoder.encode("itemPrice","UTF-8")+"="+URLEncoder.encode(r4,"UTF-8")
+		+"&" +URLEncoder.encode("genCode","UTF-8")+"="+URLEncoder.encode(sharedCode,"UTF-8")
+		+"&" +URLEncoder.encode("recName","UTF-8")+"="+URLEncoder.encode(nameName,"UTF-8");
+		bufferedWriter.write(post_data);
+		bufferedWriter.flush();
+		bufferedWriter.close();
+		outputStream.close();
+		InputStream inputStream = httpURLConnection.getInputStream();
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+		String result="";
+		String line="";
+		while((line = bufferedReader.readLine())!= null) {
+			result += line;
+			}
+		bufferedReader.close();
+		inputStream.close();
+		httpURLConnection.disconnect();
+		return result;
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+				}
+	return null;
+}
+
+@FXML
+private void buttonAction(){
+	insertDets();
+	getSelectedPickUpID();
+	sendEmail();
 }
 }
 

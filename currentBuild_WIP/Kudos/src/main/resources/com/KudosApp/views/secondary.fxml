@@ -44,7 +44,7 @@
             </Label>
             <Button fx:id="regGoBack" alignment="BOTTOM_LEFT" mnemonicParsing="false" onAction="#goBack" text="Go Back">
                <graphic>
-                  <Icon content="LANGUAGE" />
+                  <Icon content="REPLY" />
                </graphic>
                <font>
                   <Font size="20.0" />

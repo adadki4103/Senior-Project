@@ -25,4 +25,10 @@ public class PrimaryPresenter {
     void buttonClickTwo() {
         MobileApplication.getInstance().switchView("Third View");
     }
+    @FXML
+    void buttonClickThree(){
+    	MobileApplication.getInstance().switchView("Eleventh View");
+    	//System.out.println("Icon works");
+    	//label.setText("Icon Worked");
+    }
 }

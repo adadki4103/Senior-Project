@@ -22,11 +22,15 @@ public class FifthPresenter {
                 AppBar appBar = MobileApplication.getInstance().getAppBar();
                 appBar.setNavIcon(MaterialDesignIcon.MENU.button(e -> 
                         MobileApplication.getInstance().showLayer(Main.MENU_LAYER)));
-                appBar.setTitleText("Welcome");
+                appBar.setTitleText("Welcome"); 
             }});}
     
     @FXML
     private void goGiveGift(){
     	MobileApplication.getInstance().switchView("Sixth View");
+    }
+    @FXML
+    private void goGetGift(){
+    	MobileApplication.getInstance().switchView("Ninth View");
     }
 }

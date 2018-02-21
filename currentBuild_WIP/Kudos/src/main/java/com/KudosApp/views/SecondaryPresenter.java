@@ -35,6 +35,7 @@ public class SecondaryPresenter {
 	String r2;
 	public String user_name;
 	public String passwordEntered;
+	public static String loggedInName;
 
     public void initialize() {
         secondary.setShowTransitionFactory(BounceInRightTransition::new);
@@ -52,6 +53,7 @@ public class SecondaryPresenter {
 		try {
 			//MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
 			user_name = userNameField.getText();
+			loggedInName = user_name;
 			passwordEntered = passWordField.getText();
 			//messageDigest.update(passwordEntered.getBytes());
 			//String encryptedPass = new String(messageDigest.digest());
@@ -97,4 +99,5 @@ public class SecondaryPresenter {
 	void goBack(){
 		MobileApplication.getInstance().switchView("Fourth View");
     }
+	
 }

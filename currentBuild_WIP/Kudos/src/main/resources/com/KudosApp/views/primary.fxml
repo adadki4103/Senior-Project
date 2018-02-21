@@ -29,7 +29,7 @@
                   </Label>
                   <Button layoutX="105.0" layoutY="363.0" mnemonicParsing="false" onAction="#buttonClickTwo" prefHeight="44.0" prefWidth="148.0" text="Registration">
                      <graphic>
-                        <Icon content="LANGUAGE" />
+                        <Icon content="ACCOUNT_CIRCLE" />
                      </graphic>
                      <font>
                         <Font size="20.0" />
@@ -43,6 +43,7 @@
                         <Font size="20.0" />
                      </font>
                   </Button>
+                  <Icon content="BUBBLE_CHART" layoutX="14.0" layoutY="66.0" onMouseClicked="#buttonClickThree" onTouchPressed="#buttonClickThree" prefHeight="62.0" prefWidth="55.0" />
                </children>
             </AnchorPane>
          </children>

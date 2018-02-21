@@ -106,8 +106,7 @@ public class SixthPresenter {
     // Get brandCombo Selection. Use it to populate itemCombo
     @FXML
     private String getBrandBox() throws SQLException, NoSuchAlgorithmException{
-    	//itemCombo.getItems().clear();
-    	
+    	itemCombo.getItems().clear();
 		String value = brandCombo.getValue();
 		String login_url = "http://kudosapp.org/kudosLibb/whatItem.php";
 		try {
@@ -150,6 +149,10 @@ public class SixthPresenter {
     @FXML
     private String checkForUser(){
     	String nameToCheck = toSendName.getText();
+    	itemChosen = itemCombo.getValue(); 
+		nameGiven = toSendName.getText();
+		//sendToSeven();
+		//sendToSevenAgain();
 		String login_url = "http://kudosapp.org/kudosLibb/doesExist.php";
 		try {
 			URL url = new URL(login_url);
@@ -191,7 +194,9 @@ public class SixthPresenter {
 			}
 			if(isMyComboBoxEmpty == false && nameExist == true && r3.equals(yesName) && StringUtils.isEmptyOrWhitespaceOnly(str) == false){
 				itemChosen = itemCombo.getValue(); 
+				System.out.println(String.valueOf(itemChosen));
 				nameGiven = toSendName.getText();
+				System.out.println(String.valueOf(nameGiven));
 				MobileApplication.getInstance().switchView("Seventh View");
 			}
 			else if(isMyComboBoxEmpty == true || nameExist == false){

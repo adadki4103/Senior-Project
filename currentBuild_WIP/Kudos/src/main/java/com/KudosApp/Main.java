@@ -8,6 +8,10 @@ import com.KudosApp.views.FifthView;
 import com.KudosApp.views.SixthView;
 import com.KudosApp.views.SeventhView;
 import com.KudosApp.views.EighthView;
+import com.KudosApp.views.NinthView;
+import com.KudosApp.views.TenthView;
+import com.KudosApp.views.EleventhView;
+import com.KudosApp.views.TwelthView;
 import com.gluonhq.charm.glisten.application.MobileApplication;
 import com.gluonhq.charm.glisten.layout.layer.SidePopupView;
 import com.gluonhq.charm.glisten.mvc.View;
@@ -26,6 +30,10 @@ public class Main extends MobileApplication {
     public static final String SIXTH_VIEW = "Sixth View"; // Send a Gift Page
     public static final String SEVENTH_VIEW = "Seventh View"; // Payment Page
     public static final String EIGHTH_VIEW = "Eighth View"; // Gift Has Been Sent Page
+    public static final String NINTH_VIEW = "Ninth View"; // Redeem a gift
+    public static final String TENTH_VIEW = "Tenth View"; // Redeemed Gift Info
+    public static final String ELEVENTH_VIEW = "Eleventh View"; // Brand User Log In
+    public static final String TWELTH_VIEW = "Twelth View"; // Brand User Approve/Deny Page
     public static final String MENU_LAYER = "Side Menu";
     
     @Override
@@ -38,6 +46,10 @@ public class Main extends MobileApplication {
         addViewFactory(SIXTH_VIEW, () -> (View) new SixthView().getView());
         addViewFactory(SEVENTH_VIEW, () -> (View) new SeventhView().getView());
         addViewFactory(EIGHTH_VIEW, () -> (View) new EighthView().getView());
+        addViewFactory(NINTH_VIEW, () -> (View) new NinthView().getView());
+        addViewFactory(TENTH_VIEW, () -> (View) new TenthView().getView());
+        addViewFactory(ELEVENTH_VIEW, () -> (View) new EleventhView().getView());
+        addViewFactory(TWELTH_VIEW, () -> (View) new TwelthView().getView());
         addLayerFactory(MENU_LAYER, () -> new SidePopupView(new DrawerManager().getDrawer()));
     }
 

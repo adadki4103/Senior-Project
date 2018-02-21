@@ -16,7 +16,15 @@
                <font>
                   <Font size="16.0" />
                </font></Label>
-            <Button mnemonicParsing="false" onAction="#goGiveGift" prefHeight="44.0" prefWidth="197.0" text="Redeem a Gift">
+            <Button mnemonicParsing="false" onAction="#goGiveGift" prefHeight="44.0" prefWidth="197.0" text="Give a Gift">
+               <graphic>
+                  <Icon content="LANGUAGE" />
+               </graphic>
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#goGetGift" prefHeight="44.0" prefWidth="197.0" text="Redeem a Gift">
                <graphic>
                   <Icon content="LANGUAGE" />
                </graphic>
